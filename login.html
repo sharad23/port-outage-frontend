@@ -1,0 +1,38 @@
+<html  ng-app="app">
+<head>
+    <title>Angular-Inline Editor Demo</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>  
+<script src="http://code.angularjs.org/1.2.3/angular-route.js"></script>
+<script src="app.js"></script>
+</head>
+
+<body>
+
+<h2>Login Form</h2>
+
+<form name="userForm" ng-submit="submitForm()" novalidate>
+      
+        <!-- USERNAME -->
+        <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
+            <label>Username</label>
+            <input type="text" name="username" ng-model="validateData.username" ng-minlength="3" ng-maxlength="8" required>
+            <p ng-show="userForm.username.$error.minlength && !userForm.username.$pristine" >Username is too short.</p>
+            <p ng-show="userForm.username.$error.maxlength && !userForm.username.$pristine">Username is too long.</p>
+			<p ng-show="userForm.username.$error.required && !userForm.username.$pristine">Username is required</div>
+			<p ng-show="userForm.username.$error.unique && !userForm.username.$pristine">Username must be unique</div>
+        </div>
+        
+        <!-- PASSWORD -->
+        <div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
+            <label>Password</label>
+            <input type="password" name="password"  ng-model="validateData.password" required>
+            <p ng-show="userForm.password.$invalid && !userForm.password.$pristine">Enter a password.</p>
+        </div>
+        
+        <button type="submit" ng-disabled="userForm.$invalid">Submit</button>
+        
+    </form>
+
+</body>
+</html>
